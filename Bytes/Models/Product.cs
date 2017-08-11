@@ -17,7 +17,7 @@ namespace Bytes.Models
         private DateTime expiryDate;
         private string description;
   
-
+        [Key]
         public int ProductID
         {
             get { return productID; }
@@ -33,6 +33,8 @@ namespace Bytes.Models
             set { productname = value; }
         }
 
+        [Key]
+        [ForeignKey("Category")]
         public int CategoryID { get; set; }
 
         public virtual Category Category { get; set; }

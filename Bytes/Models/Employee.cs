@@ -15,6 +15,7 @@ namespace Bytes.Models
         private string lastName;
         private string phoneNumber;
 
+        [Key]
         public int EmployeeID
         {
             get { return employeeID; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,33 +9,56 @@ namespace Bytes.Controllers
 {
     public class ManagerController : Controller
     {
-        // GET: Manager
-        public ActionResult Index()
+        public ActionResult GetAllManagers()
+        {
+            ManagerDAL manDAL = new ManagerDAL();
+            ModelState.Clear();
+            return View(manDAL.GetAllManagers());
+        }
+
+        [HttpGet]
+        public ActionResult AddManager()
         {
             return View();
         }
 
-        // GET: Manager/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Manager/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Manager/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult AddManager(Manager manModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    ManagerDAL manDAL = new ManagerDAL();
+                    if (manDAL.AddManager(manModel))
+                    {
+                        ViewBag.Message = "Successfully added new Manager";
+                    }
+                }
+                return View();
+            }
+            catch
+            {
 
-                return RedirectToAction("Index");
+                return View();
+            }
+        }
+
+        public ActionResult UpdateManager(int id)
+        {
+            ManagerDAL manDAL = new ManagerDAL();
+
+            return View(manDAL.GetAllManagers().Find(ManagerItem => ManagerItem.EmployeeID == id));
+        }
+
+        [HttpPost]
+        public ActionResult UpdateManager(int id, Manager obj)
+        {
+            try
+            {
+                ManagerDAL manDAL = new ManagerDAL();
+                manDAL.UpdateManager(obj);
+                return RedirectToAction("GetAllManagers");
             }
             catch
             {
@@ -42,48 +66,25 @@ namespace Bytes.Controllers
             }
         }
 
-        // GET: Manager/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Manager/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult DeleteManager(int id)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                ManagerDAL manDAL = new ManagerDAL();
+                if (manDAL.DeleteManager(id))
+                {
+                    ViewBag.AlertMsg = "Manager successfully deleted";
+                }
+                return RedirectToAction("GetAllManagers");
             }
             catch
             {
+
                 return View();
             }
+
         }
 
-        // GET: Manager/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Manager/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
+

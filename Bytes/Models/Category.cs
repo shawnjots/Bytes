@@ -11,6 +11,7 @@ namespace Bytes.Models
         private int categoryID;
         private string categoryName;
 
+        [Key]
         public int CategoryID
         {
             get { return categoryID; }

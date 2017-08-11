@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bytes.DAL;
+using Bytes.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,33 +10,56 @@ namespace Bytes.Controllers
 {
     public class SalesPersonController : Controller
     {
-        // GET: SalesPerson
-        public ActionResult Index()
+        public ActionResult GetAllSalesPerson()
+        {
+            SalesPersonDAL salesDAL = new SalesPersonDAL();
+            ModelState.Clear();
+            return View(salesDAL.GetAllSalesPerson());
+        }
+
+        [HttpGet]
+        public ActionResult AddSalesPerson()
         {
             return View();
         }
 
-        // GET: SalesPerson/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: SalesPerson/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SalesPerson/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult AddSalesPerson(SalesPerson salesModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    SalesPersonDAL salesDAL = new SalesPersonDAL();
+                    if (salesDAL.AddSalesPerson(salesModel))
+                    {
+                        ViewBag.Message = "Successfully added new Sales Person";
+                    }
+                }
+                return View();
+            }
+            catch
+            {
 
-                return RedirectToAction("Index");
+                return View();
+            }
+        }
+
+        public ActionResult UpdateSalesPerson(int id)
+        {
+            SalesPersonDAL salesDAL = new SalesPersonDAL();
+
+            return View(salesDAL.GetAllSalesPerson().Find(SalesPersonItem => SalesPersonItem.EmployeeID == id));
+        }
+
+        [HttpPost]
+        public ActionResult UpdateSalesPerson(int id, SalesPerson obj)
+        {
+            try
+            {
+                SalesPersonDAL salesDAL = new SalesPersonDAL();
+                salesDAL.UpdateSalesPerson(obj);
+                return RedirectToAction("GetAllSalesPerson");
             }
             catch
             {
@@ -42,46 +67,20 @@ namespace Bytes.Controllers
             }
         }
 
-        // GET: SalesPerson/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: SalesPerson/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult DeleteSalesPErson(int id)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                SalesPersonDAL salesDAL = new SalesPersonDAL();
+                if (salesDAL.DeleteSalesPerson(id))
+                {
+                    ViewBag.AlertMsg = "Sales Person successfully deleted";
+                }
+                return RedirectToAction("GetAllSalesPErson");
             }
             catch
             {
-                return View();
-            }
-        }
 
-        // GET: SalesPerson/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: SalesPerson/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
                 return View();
             }
         }

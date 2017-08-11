@@ -1,40 +1,67 @@
-﻿using System;
+﻿using Bytes.DAL;
+using Bytes.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.ModelBinding;
 using System.Web.Mvc;
 
 namespace Bytes.Controllers
 {
     public class CategoryController : Controller
     {
-        // GET: Category
-        public ActionResult Index()
+
+        public ActionResult GetAllCategories()
+        {
+            CategoryDAL catDAL = new CategoryDAL();
+            ModelState.Clear();
+            return View(catDAL.GetAllCategories());
+        }
+
+        [HttpGet]
+        public ActionResult AddCategory()
         {
             return View();
         }
 
-        // GET: Category/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Category/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Category/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult AddCategory(Category catModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    CategoryDAL catDAL = new CategoryDAL();
+                    if (catDAL.AddCategory(catModel))
+                    {
+                        ViewBag.Message = "Successfully added new category";
+                    }
+                }
+                return View();
+            }
+            catch
+            {
 
-                return RedirectToAction("Index");
+                return View();
+            }
+        }
+
+        public ActionResult UpdateCategory(int id)
+        {
+            CategoryDAL catDAL = new CategoryDAL();
+
+            return View(catDAL.GetAllCategories().Find(CategoryItem => CategoryItem.CategoryID == id));
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCategory(int id, Category obj)
+        {
+            try
+            {
+                CategoryDAL catDAL = new CategoryDAL();
+                catDAL.UpdateCategory(obj);
+                return RedirectToAction("GetAllCategories");
             }
             catch
             {
@@ -42,48 +69,24 @@ namespace Bytes.Controllers
             }
         }
 
-        // GET: Category/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Category/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult DeleteCategory(int id)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                CategoryDAL catDAL = new CategoryDAL();
+                if (catDAL.DeleteCategory(id))
+                {
+                    ViewBag.AlertMsg = "Category successfully deleted";
+                }
+                return RedirectToAction("GetAllCategories");
             }
-            catch
+            catch 
             {
+
                 return View();
             }
+            
         }
-
-        // GET: Category/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Category/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+ 
     }
 }

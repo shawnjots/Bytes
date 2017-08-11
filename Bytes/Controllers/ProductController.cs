@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bytes.DAL;
+using Bytes.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,33 +10,58 @@ namespace Bytes.Controllers
 {
     public class ProductController : Controller
     {
-        // GET: Product
-        public ActionResult Index()
+        
+        public ActionResult GetAllProducts()
+        {
+            ProductDAL proDAL = new ProductDAL();
+            ModelState.Clear();
+            return View(proDAL.GetAllProducts());
+        }
+
+        
+        public ActionResult AddProduct()
         {
             return View();
         }
 
-        // GET: Product/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Product/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Product/Create
+        
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult AddProduct(Product obj)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    ProductDAL proDAL = new ProductDAL();
+                    if (proDAL.AddProduct(obj))
+                    {
+                        ViewBag.Message = "New product successfully added";
+                    }
+                }
+                return View();
+            }
 
-                return RedirectToAction("Index");
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult UpdateProduct(int id)
+        {
+            ProductDAL proDAL = new ProductDAL();
+            return View(proDAL.GetAllProducts().Find(ProductItem => ProductItem.ProductID == id));
+        }
+
+        [HttpPost]
+        public ActionResult UpdateProduct(int id, Product obj)
+        {
+            try
+            {
+
+                ProductDAL proDAL = new ProductDAL();
+                proDAL.UpdateProduct(obj);
+                return RedirectToAction("GetAllProducts");
             }
             catch
             {
@@ -42,48 +69,24 @@ namespace Bytes.Controllers
             }
         }
 
-        // GET: Product/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Product/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult DeleteProduct(int id)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                ProductDAL proDAL = new ProductDAL();
+                if (proDAL.DeleteProduct(id))
+                {
+                    ViewBag.AlertMsg = "Product successfully deleted";
+                }
+                return RedirectToAction("GetAllProducts");
             }
-            catch
+
+            catch 
             {
                 return View();
             }
+            
         }
 
-        // GET: Product/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Product/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
