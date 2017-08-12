@@ -245,6 +245,26 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="StoredProcedures\AddNewCategory.sql" />
+    <Content Include="StoredProcedures\AddNewEmployee.sql" />
+    <Content Include="StoredProcedures\AddNewManager.sql" />
+    <Content Include="StoredProcedures\AddNewProduct.sql" />
+    <Content Include="StoredProcedures\AddNewSalesPerson.sql" />
+    <Content Include="StoredProcedures\DeleteCategory.sql" />
+    <Content Include="StoredProcedures\DeleteEmployee.sql" />
+    <Content Include="StoredProcedures\DeleteManager.sql" />
+    <Content Include="StoredProcedures\DeleteProduct.sql" />
+    <Content Include="StoredProcedures\DeleteSalesPerson.sql" />
+    <Content Include="StoredProcedures\GetCategories.sql" />
+    <Content Include="StoredProcedures\GetEmployees.sql" />
+    <Content Include="StoredProcedures\GetManagers.sql" />
+    <Content Include="StoredProcedures\GetProducts.sql" />
+    <Content Include="StoredProcedures\GetSalesPeople.sql" />
+    <Content Include="StoredProcedures\UpdateCategory.sql" />
+    <Content Include="StoredProcedures\UpdateEmployee.sql" />
+    <Content Include="StoredProcedures\UpdateManager.sql" />
+    <Content Include="StoredProcedures\UpdateProduct.sql" />
+    <Content Include="StoredProcedures\UpdateSalesPerson.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
