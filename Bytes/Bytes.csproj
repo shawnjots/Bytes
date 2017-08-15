@@ -302,10 +302,11 @@
     <Content Include="Views\Category\AddCategory.cshtml" />
     <Content Include="Views\Category\GetAllCategories.cshtml" />
     <Content Include="Views\Category\UpdateCategory.cshtml" />
+    <Content Include="Views\Manager\AddManager.cshtml" />
+    <Content Include="Views\Manager\GetAllManagers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Manager\" />
     <Folder Include="Views\Product\" />
     <Folder Include="Views\SalesPerson\" />
   </ItemGroup>

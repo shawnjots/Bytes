@@ -35,7 +35,7 @@ namespace Bytes.Controllers
                       
                     }
                 }
-                return RedirectToAction("");
+                return RedirectToAction("GetAllManagers");
             }
             catch
             {
