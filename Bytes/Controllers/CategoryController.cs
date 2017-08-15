@@ -33,12 +33,12 @@ namespace Bytes.Controllers
                 if (ModelState.IsValid)
                 {
                     CategoryDAL catDAL = new CategoryDAL();
-                    if (catDAL.AddCategory(catModel))
+                   if (catDAL.AddCategory(catModel))
                     {
                         ViewBag.Message = "Successfully added new category";
                     }
                 }
-                return View();
+                return RedirectToAction("GetAllCategories");
             }
             catch
             {

@@ -32,10 +32,10 @@ namespace Bytes.Controllers
                     ManagerDAL manDAL = new ManagerDAL();
                     if (manDAL.AddManager(manModel))
                     {
-                        ViewBag.Message = "Successfully added new Manager";
+                      
                     }
                 }
-                return View();
+                return RedirectToAction("");
             }
             catch
             {

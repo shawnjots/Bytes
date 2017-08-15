@@ -299,10 +299,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Category\AddCategory.cshtml" />
+    <Content Include="Views\Category\GetAllCategories.cshtml" />
+    <Content Include="Views\Category\UpdateCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Category\" />
     <Folder Include="Views\Manager\" />
     <Folder Include="Views\Product\" />
     <Folder Include="Views\SalesPerson\" />
