@@ -62,6 +62,7 @@ namespace Bytes.Models
             set { lastName = value; }
         }
         [Required(ErrorMessage = "Please provide phone number")]
+        [Display(Name = "Phone Number")]
         public string PhoneNumber
         {
             get { return phoneNumber; }

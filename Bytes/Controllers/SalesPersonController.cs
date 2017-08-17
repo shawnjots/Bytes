@@ -10,6 +10,12 @@ namespace Bytes.Controllers
 {
     public class SalesPersonController : Controller
     {
+
+        public ActionResult SalesPersonDashboard()
+        {
+            return View();
+        }
+
         public ActionResult GetAllSalesPerson()
         {
             SalesPersonDAL salesDAL = new SalesPersonDAL();
@@ -36,7 +42,7 @@ namespace Bytes.Controllers
                         ViewBag.Message = "Successfully added new Sales Person";
                     }
                 }
-                return View();
+                return RedirectToAction("GetAllSalesPerson");
             }
             catch
             {

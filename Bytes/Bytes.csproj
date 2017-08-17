@@ -192,13 +192,9 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SalesPersonController.cs" />
@@ -260,6 +256,7 @@
     <Content Include="StoredProcedures\GetManagers.sql" />
     <Content Include="StoredProcedures\GetProducts.sql" />
     <Content Include="StoredProcedures\GetSalesPeople.sql" />
+    <Content Include="StoredProcedures\LoginCredentials.sql" />
     <Content Include="StoredProcedures\UpdateCategory.sql" />
     <Content Include="StoredProcedures\UpdateEmployee.sql" />
     <Content Include="StoredProcedures\UpdateManager.sql" />
@@ -279,36 +276,22 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Category\AddCategory.cshtml" />
-    <Content Include="Views\Category\GetAllCategories.cshtml" />
     <Content Include="Views\Category\UpdateCategory.cshtml" />
     <Content Include="Views\Manager\AddManager.cshtml" />
     <Content Include="Views\Manager\GetAllManagers.cshtml" />
+    <Content Include="Views\Manager\UpdateManager.cshtml" />
+    <Content Include="Views\SalesPerson\AddSalesPerson.cshtml" />
+    <Content Include="Views\SalesPerson\UpdateSalesPerson.cshtml" />
+    <Content Include="Views\SalesPerson\GetAllSalesPerson.cshtml" />
+    <Content Include="Views\Category\GetAllCategories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Product\" />
-    <Folder Include="Views\SalesPerson\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

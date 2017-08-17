@@ -101,7 +101,7 @@ namespace Bytes.Models
         public bool DeleteManager(int Id)
         {
             connection();
-            SqlCommand com = new SqlCommand("DeleteByEmployeeId", conn);
+            SqlCommand com = new SqlCommand("DeleteByManagerId", conn);
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.AddWithValue("@employeeID", Id);
 

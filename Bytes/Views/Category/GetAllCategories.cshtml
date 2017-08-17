@@ -1,36 +1,33 @@
-﻿@model  IEnumerable<Bytes.Models.Category>
+﻿@model IEnumerable<Bytes.Models.Category>
 
 <div>
-    <h4>Category</h4>
+    <h4>All Categories</h4>
     <hr />
     <p>
-        @Html.ActionLink("Add New Category", "AddCategory")
+        @Html.ActionLink("New Category", "Create")
     </p>
     <table class="table">
         <tr>
-
             <th>
                 @Html.DisplayNameFor(model => model.CategoryName)
             </th>
             <th></th>
-        </tr> 
-            @foreach (var item in Model)
-            {
-                @Html.HiddenFor(model => item.CategoryID)
+        </tr>
+
+        @foreach (var item in Model)
+        {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CategoryName )
+                    @Html.DisplayFor(modelItem => item.CategoryName)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "UpdateCategory", new { id = item.CategoryID }) |
                     @Html.ActionLink("Delete", "DeleteCategory", new { id = item.CategoryID },
-new { onclick = "return confirm('Are sure you want to delete this category?')" }) |
-                    @Html.ActionLink("Back to List", "GetAllCategories")
+new { onclick = "return confirm('Are sure you want to delete this category?')" })
+
                 </td>
             </tr>
+        }
 
-            }
-
-        </table>
-    </div>
-
+    </table>
+</div>

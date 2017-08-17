@@ -102,7 +102,7 @@ namespace Bytes.DAL
         public bool DeleteSalesPerson(int Id)
         {
             connection();
-            SqlCommand com = new SqlCommand("DeleteByEmployeeId", conn);
+            SqlCommand com = new SqlCommand("DeleteSalesPersonById", conn);
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.AddWithValue("@employeeID", Id);
 

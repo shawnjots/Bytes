@@ -9,6 +9,12 @@ namespace Bytes.Controllers
 {
     public class ManagerController : Controller
     {
+
+        public ActionResult ManagerDashboard()
+        {
+            return View();
+        }
+
         public ActionResult GetAllManagers()
         {
             ManagerDAL manDAL = new ManagerDAL();
